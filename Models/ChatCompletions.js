@@ -18,7 +18,7 @@ const response = (message_body) => {
     ]
 
     return openai.createChatCompletion({
-        model: "koala-13b",
+        model: "gpt-3.5-turbo",
         messages
     })
 }
