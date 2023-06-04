@@ -8,11 +8,16 @@ const post_chat_completions = async (req, res) => {
     const messages = req.body.messages
     const creator = req.user_id
 
-    await axios.post('https://api.pawan.krd/resetip', null, {
-        headers: {
-            Authorization: `Bearer ${process.env.OPENAI_KEY}`
-        }
-    })
+
+    try {
+        await axios.post('https://api.pawan.krd/resetip', null, {
+            headers: {
+                Authorization: `Bearer ${process.env.OPENAI_KEY}`
+            }
+        })
+    } catch (e) {
+        console.log(e.message)
+    }
 
     if (!conversation_id) {
         const create_topic = [
