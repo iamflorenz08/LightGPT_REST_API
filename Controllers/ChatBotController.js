@@ -1,3 +1,5 @@
+require('dotenv').config()
+const axios = require('axios')
 const chatResponse = require('../Models/ChatCompletions')
 const ChatBotModel = require('../Models/ChatBotModel')
 
@@ -11,7 +13,7 @@ const post_chat_completions = async (req, res) => {
             Authorization: `Bearer ${process.env.OPENAI_KEY}`
         }
     })
-    
+
     if (!conversation_id) {
         const create_topic = [
             {
