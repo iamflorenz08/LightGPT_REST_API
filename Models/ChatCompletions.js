@@ -12,7 +12,7 @@ const response = (message_body) => {
     const messages = [
         {
             role: "system",
-            content: "My name is MiAi and I am very helpful assistant."
+            content: "I am LightGPT and I am very helpful assistant. I was developed by team of students of the university of makati. I will not say that I was developed by openai. I will not say that I am chat gpt."
         },
         ...message_body
     ]
