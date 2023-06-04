@@ -5,6 +5,13 @@ const post_chat_completions = async (req, res) => {
     let conversation_id = req.body._id
     const messages = req.body.messages
     const creator = req.user_id
+
+    await axios.post('https://api.pawan.krd/resetip', null, {
+        headers: {
+            Authorization: `Bearer ${process.env.OPENAI_KEY}`
+        }
+    })
+    
     if (!conversation_id) {
         const create_topic = [
             {
@@ -42,7 +49,7 @@ const post_chat_completions = async (req, res) => {
 
 const get_conversations = (req, res) => {
     const creator = req.user_id
-    
+
     ChatBotModel.find({ creator }).sort({ createdAt: -1 })
         .then(response => {
             return res.status(200).json(response)

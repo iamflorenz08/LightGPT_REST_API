@@ -2,7 +2,6 @@ require('dotenv').config()
 const helmet = require('helmet')
 const express = require('express')
 const mongoose = require('mongoose')
-const axios = require('axios')
 const app = express()
 const PORT = process.env.PORT || 5000
 const ChatBotRouter = require('./Routers/ChatBotRouter')
@@ -14,17 +13,6 @@ mongoose.connect(process.env.MONGODB_URI)
     .then(() => {
         app.listen(PORT, () => {
             console.log(`App is listening to PORT ${PORT}`)
-            axios.post('https://api.pawan.krd/resetip', null, {
-                headers: {
-                    Authorization: `Bearer ${process.env.OPENAI_KEY}`
-                }
-            })
-                .then(response => {
-                    console.log(response.data);
-                })
-                .catch(error => {
-                    console.error(error);
-                })
         })
     })
     .catch(err => console.log(err.message))
