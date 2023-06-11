@@ -8,15 +8,16 @@ const post_chat_completions = async (req, res) => {
     const messages = req.body.messages
     const creator = req.user_id
 
-
     try {
-        await axios.post('https://api.pawan.krd/resetip', null, {
+        const sam = await axios.post('https://api.pawan.krd/resetip', null, {
             headers: {
                 Authorization: `Bearer ${process.env.OPENAI_KEY}`
             }
         })
+
+        return res.status(200).json(sam.data)
     } catch (e) {
-        console.log(e.message)
+        return res.status(400).json(e.message)
     }
 
     if (!conversation_id) {
